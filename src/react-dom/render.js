@@ -10,13 +10,12 @@ import Component from '../react/component.js'
 // 递归的出口就是只有文本节点
 
 // 2. 节点类型  有三种:
-//     1.文本节点  return createTextNode() 结束
-//     2.标签节点   createElement()  props  children设置(递归_render)
-//     3.Component 组件   render(return jsx)  组件返回的是个jsx, 然后就调用render(),挂载到组件的父节点上
-// render => _render => createElement || (createComponent => renderComponent)
+//   1.文本节点  return createTextNode() 结束
+//   2.标签节点   createElement()  props  children设置(递归_render)
+//   3.Component 组件   render(return jsx)  组件返回的是个jsx, 然后就调用render(),挂载到组件的父节点上
+//     render => _render => createElement || (createComponent => renderComponent)
 
 export function _render (vnode) {
-  console.log('heihei', vnode)
   if (vnode === undefined || vnode === null || typeof vnode === 'boolean')
   vnode = '';
 
@@ -48,7 +47,6 @@ export function _render (vnode) {
     })
   }
   if (vnode.children) {
-    console.log('----------', vnode.children)
     vnode.children.forEach(child => renderChildren(child, dom));
   }
   return dom;

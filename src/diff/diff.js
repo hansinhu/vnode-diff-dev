@@ -2,11 +2,10 @@ import * as patchType from './patchType'
 let Index = 0;
 
 function diff(oldDOM, newDOM) {
-    console.log('---', oldDOM, newDOM)
     let patchs = {}
     let index = 0
-    TreeWalker(oldDOM, newDOM, patchs, index)// 遍历dom数
-    // console.log({patchs})
+    // 遍历dom树
+    TreeWalker(oldDOM, newDOM, patchs, index)
     return patchs;
 }
 

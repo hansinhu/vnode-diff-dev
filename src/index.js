@@ -1,6 +1,8 @@
 import React from './react';
 import ReactDOM from './react-dom';
 
+// babel-plugin-transform-react-jsx 作用是接卸JSX语法并调用 React.createElement
+
 class Counter extends React.Component {
   constructor (props) {
     super(props);
