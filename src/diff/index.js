@@ -2,6 +2,8 @@ import * as patchType from './patchType'
 let Index = 0;
 
 function diff(oldDOM, newDOM) {
+  console.log(oldDOM, )
+  console.log(newDOM)
   let patchs = {}
   let index = 0
   // 遍历dom树

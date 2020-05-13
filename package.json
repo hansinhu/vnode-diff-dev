@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel ./index.html",
-    "start:diff": "parcel ./diff.html"
+    "start:diff": "parcel ./diff-demo.html"
   },
   "keywords": [],
   "author": "",
