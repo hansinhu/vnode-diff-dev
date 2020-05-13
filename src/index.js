@@ -1,5 +1,6 @@
 import React from './react';
 import ReactDOM from './react-dom';
+require('./diff')
 
 class Counter extends React.Component {
   constructor (props) {
@@ -25,15 +26,23 @@ class Counter extends React.Component {
   }
 }
 
+class Hello extends React.Component {
+  render () {
+    return <div>
+      Hello 
+      <span
+        className="rt"
+        onClick="console.log('kkk')"
+        style={{fontSize:20, fontWeight:'bold',color:'red'}}
+      >World!</span>
+    </div>
+  }
+}
+
 // react-jsx-plugin  将DOM变成虚拟dom
 ReactDOM.render( // 第一个参数是虚拟dom render将虚拟dom挂载到真实dom上去
-  <div>
-    Hello 
-    <span
-      className="rt"
-      onClick="console.log('kkk')"
-      style={{fontSize:20, fontWeight:'bold',color:'red'}}
-    >World!</span>
+  <div className="page">
+    <Hello />
     <Counter />
   </div>,
   document.getElementById('root')

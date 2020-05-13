@@ -49,7 +49,7 @@ function _render (vnode) {
     })
   }
   if (vnode.children) {
-    vnode.children.forEach(child => render(child, dom));
+    vnode.children.forEach(child => renderChildren(child, dom));
   }
   return dom;
 }
@@ -58,18 +58,19 @@ function setComponentProps (component, props) {
   component.props = props;
   renderComponent(component);
 }
+
 // 将component里的jsx转为DOM 他还会在setState是调用
 export function renderComponent (component) { // 渲染组件
   let base; //jsx => DOM
   const renderer = component.render(); //调用组件里面的render返回jsx
-  console.log('renderer', renderer)
+  // console.log('renderer', renderer)
   base = _render(renderer);
   if (component.base && component.base.parentNode) {// state里面改变，再次渲染
     component.base.parentNode.replaceChild(base, component.base); // 替换掉改变的dom(整个替换)
   }
   component.base = base; // 组件的dom节点
   base._component = component;
-  console.log(base)
+  // console.log(base)
 }
 
 function createComponent (component, props) { // 组件实例化
@@ -85,7 +86,12 @@ function createComponent (component, props) { // 组件实例化
   }
   return inst;
 }
+
+function renderChildren (vnode, container) {
+  return container.appendChild(_render(vnode))
+}
+
 export function render (vnode, container) {
-  // console.log(vnode)
+  container.innerHTML = null
   return container.appendChild(_render(vnode))
 }

@@ -49,6 +49,7 @@ function setAttr(el, key, value) {
             el.setAttribute(key, value)
     }
 }
+
 function renderDOM(el, root) {
     if (Object.prototype.toString.call(root) === '[object String]') {
         document.querySelector(root).appendChild(el)
