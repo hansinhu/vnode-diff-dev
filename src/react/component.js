@@ -4,6 +4,7 @@ class Component {
     this.isReactComponent = true;
     this.state = {};
     this.props = props;
+    console.log('--props--', props)
   }
   setState(stateChange) { // state的设置
     Object.assign(this.state, stateChange);

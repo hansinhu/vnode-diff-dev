@@ -1,5 +1,5 @@
-import { createElement, render, renderDOM } from './element'
-// import ReactDOM from '../react-dom';
+import React from '../react';
+import ReactDOM, { createElement, _render } from '../react-dom';
 import { diff } from './diff'
 import { patch } from './patch'
 
@@ -23,12 +23,11 @@ let VDom3 = createElement('ul', { class: 'lists', 'data-key': 'aaa' }, [
     createElement('li', { class: 'item' }, ['bb'])
 ])
 
+const el = _render(VDom2)
 
-let el = render(VDom2)
-console.log(VDom2)
 
-// ReactDOM.render(el, document.getElementById('root'))
-renderDOM(el, '#root')
+ReactDOM.render(VDom2, document.getElementById('root'))
+
 let patchs = diff(VDom2, VDom3);
 console.log('patchs=>', patchs)
 patch(el, patchs);

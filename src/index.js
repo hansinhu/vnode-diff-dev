@@ -1,6 +1,5 @@
 import React from './react';
 import ReactDOM from './react-dom';
-require('./diff')
 
 class Counter extends React.Component {
   constructor (props) {

@@ -1,4 +1,4 @@
-import { VNode, render, setAttr } from './element'
+import { setAttribute, _render, VNode } from '../react-dom'
 import * as patchType from './patchType'
 
 let patches;
@@ -26,7 +26,7 @@ function doPatch(node, patches) {
                 let props = patch.props
                 for (let key in props) {
                     if (props[key]) {
-                        setAttr(node, key, props[key])
+                      setAttribute(node, key, props[key])
                     }
                 }
                 break;
@@ -36,7 +36,7 @@ function doPatch(node, patches) {
             case patchType.REPLACE:
                 let newNode
                 if (patch.newNode instanceof VNode) {
-                    newNode = render(patch.newNode)
+                    newNode = _render(patch.newNode)
                 } else {
                     newNode = document.createTextNode(patch.newNode)
                 }

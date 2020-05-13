@@ -11,12 +11,12 @@ import Component from '../react/component.js'
 
 // 2. 节点类型  有三种:
 //     1.文本节点  return createTextNode() 结束
-//     2.标签节点   createElement()  attrs  children设置(递归_render)
+//     2.标签节点   createElement()  props  children设置(递归_render)
 //     3.Component 组件   render(return jsx)  组件返回的是个jsx, 然后就调用render(),挂载到组件的父节点上
 // render => _render => createElement || (createComponent => renderComponent)
 
-function _render (vnode) {
-  // console.log(vnode)
+export function _render (vnode) {
+  console.log('heihei', vnode)
   if (vnode === undefined || vnode === null || typeof vnode === 'boolean')
   vnode = '';
 
@@ -33,22 +33,22 @@ function _render (vnode) {
   }
   // 组件<Counter />会被解析成 vnode.tag = function Counter() {}
   if (typeof vnode.tag === 'function') {
-    // console.log(vnode);
     // return document.createTextNode('你你你你你好');
-    const component = createComponent(vnode.tag, vnode.attrs); // 组件实例化 再将组件中的render解析
-    setComponentProps(component, vnode.attrs);
+    const component = createComponent(vnode.tag, vnode.props); // 组件实例化 再将组件中的render解析
+    setComponentProps(component, vnode.props);
     return component.base; // 组件的dom节点
   }
 
  // 标签节点
   const dom = document.createElement(vnode.tag); // 第一重递归
-  if (vnode.attrs) {
-    Object.keys(vnode.attrs).forEach(key => {
-      const value = vnode.attrs[key];
+  if (vnode.props) {
+    Object.keys(vnode.props).forEach(key => {
+      const value = vnode.props[key];
       setAttribute(dom, key, value);
     })
   }
   if (vnode.children) {
+    console.log('----------', vnode.children)
     vnode.children.forEach(child => renderChildren(child, dom));
   }
   return dom;
@@ -92,6 +92,7 @@ function renderChildren (vnode, container) {
 }
 
 export function render (vnode, container) {
+  console.log('--------', vnode)
   container.innerHTML = null
   return container.appendChild(_render(vnode))
 }

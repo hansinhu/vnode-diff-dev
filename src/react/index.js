@@ -1,6 +1,12 @@
-import createElement from './create-element.js';
 import Component from './component.js'
-export default { 
+import { createElement } from '../react-dom'
+
+export { 
+  Component,
   createElement,
-  Component
+}
+
+export default { 
+  Component,
+  createElement,
 }

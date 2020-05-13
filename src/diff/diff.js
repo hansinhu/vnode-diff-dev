@@ -2,6 +2,7 @@ import * as patchType from './patchType'
 let Index = 0;
 
 function diff(oldDOM, newDOM) {
+    console.log('---', oldDOM, newDOM)
     let patchs = {}
     let index = 0
     TreeWalker(oldDOM, newDOM, patchs, index)// 遍历dom数
@@ -11,7 +12,8 @@ function diff(oldDOM, newDOM) {
 
 function TreeWalker(oldNode, newNode, patchs, index) {
     let curPatch = []
-    if (!newNode) { //节点被移除
+    if (!newNode) { // 节点被移除
+        console.log('节点被移除 =>', oldNode)
         curPatch.push({ type: patchType.REMOVE })
     } else if (oldNode.tag === newNode.tag) {//标签相同，则比较属性
         let props = diffProps(oldNode.props, newNode.props)
