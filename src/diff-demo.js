@@ -17,8 +17,12 @@ let VDom1 = createElement(
 
 let VDom2 = createElement(
     'ul',
-    { class: 'lists', style: "color:red" }, 
-    createElement('li', { class: 'item' }, 'a'),
+    { class: 'lists', style: "color:red" },
+    createElement(
+      'li',
+      { class: 'item' },
+      'a'
+    ),
     createElement('li', { class: 'item' }, 'b'),
     createElement('li', { class: 'item' }, 'c'),
 )
@@ -31,14 +35,14 @@ let VDom3 = createElement(
     createElement('li', { class: 'item' }, 'bb')
 )
 
-const el = _render(VDom1)
+const el = _render(VDom2)
 
 document.querySelector('#root').appendChild(el)
 
 // ReactDOM.render(VDom1, document.getElementById('root'))
 
 // diff start
-let patchs = diff(VDom1, VDom2);
+let patchs = diff(VDom2, VDom3);
 console.log('diff结果=>', patchs)
 
 // 更新 dom

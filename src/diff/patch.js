@@ -4,7 +4,6 @@ import * as patchType from './patchType'
 let patches;
 let index = 0;
 function patch(el, patch) {
-    console.log('--el--', el)
     patches = patch
 
     TreeWalker(el)
@@ -12,6 +11,7 @@ function patch(el, patch) {
 
 function TreeWalker(el) {
     let curPatch = patches[index++]
+
     el.childNodes.forEach(child => TreeWalker(child))
 
     if (curPatch) {
@@ -41,8 +41,6 @@ function doPatch(node, patches) {
                 } else {
                     newNode = document.createTextNode(patch.newNode)
                 }
-                console.log(node.parentNode)
-                console.log(node.parentNode.repalceChild)
                 node.parentNode.repalceChild(node, newNode)
                 break;
             case patchType.REMOVE:
